@@ -1,0 +1,119 @@
+/********************
+*  Cristian Vecchi  *
+*       4°H         *      
+*     26/9/2022     *
+* 	File 	    *          
+********************/
+# include  < stdio.h >
+# include  < stdlib.h >
+# definisce  M  50
+
+void  cript ( char [], char []);
+void  decrypt ( char [], char []);
+
+int  principale ()
+{
+
+	char st[]={ " base.txt " },st1[]={ " crypt.txt " },st2[]={ " decrypt.txt " };		// assegna ad ogni stringa il nome del file
+
+	
+ 	cripta (st,st1);
+ 	
+	decifrare (st1,st2);
+
+}
+
+void  cripta ( char st[], char st1[])
+{
+	carattere c;	
+	FILE *FileIN,*FileOUT; 		// dichiara i puntatori
+	
+	FileIN= fopen (st,"r"); 		
+	
+	FileOUT= fopen (st1,"w");	
+	
+	if (FileIN != NULL && FileOUT != NULL )   // controlla se il puntatore è diverso da NULL
+	{
+		while (! feof (FileIN))
+		{
+		
+			c= fgetc (FileIN);			// c prende il carattere dal file iniziale
+			
+			se (c== '  ' )	
+			{
+				c= '  ' ;
+				fputc (c,FileOUT);
+			}
+			altro
+			{
+				if ((c>= ' A ' && c<= ' Z ' ) || (c>= ' a ' && c<= ' z ' ))   
+				{
+							
+					if (c== ' X ' || c== ' Y ' || c== ' Z ' || c== ' x ' || c== ' y ' || c== ' z ' )   / / controlla se c uguale ax,y, ez maiuscole e minuscole
+					{
+						c-= 26 ;			
+					}
+					
+					c+= 3 ;		
+
+				
+					fputc (c,FileOUT);		
+				}
+			}			
+		}
+	}
+
+	altro
+	{
+		printf ("\nerrore in apertura file");
+		printf ("\n ");
+	}
+		
+	fclose (FileIN);			
+	fclose (FileOUT);		
+}
+
+void  decodifica ( char st[], char st1[])
+{
+	carattere c;
+	FILE *FileIN,*FileOUT;
+	
+	FileIN= fopen (st,"r");
+	FileOUT= fopen (st1,"w");
+	
+	if (FileIN != NULL && FileOUT != NULL )
+	{
+		while (! feof (FileIN))
+		{
+		
+			c= fgetc (FileIN);
+			
+			se (c== '  ' )
+			{
+				c= '  ' ;
+				fputc (c,FileOUT);
+			}
+			altro
+			{
+				if ((c>= ' A ' && c< ' Z ' ) || (c>= ' a ' && c< ' z ' ))
+				{
+							
+					if (c== ' LA ' || c== ' SI ' || c== ' C ' || c== ' a ' || c== ' B ' || c == ' c ' )   / / controlla se c uguale ax,y, ez maiuscole e minuscole
+					{
+						c+= 26 ;		
+					}
+					
+					c-= 3 ;			
+
+				
+					fputc (c,FileOUT);	
+				}
+			}
+		}
+	}
+	altro
+	{
+		printf ("\nerrore in apertura file");
+		printf ("\n");
+	}
+}
