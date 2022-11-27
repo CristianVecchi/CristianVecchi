@@ -1,0 +1,46 @@
+/********************
+*  Cristian Vecchi  *
+*       4°H         *      
+*     26/9/2022     *
+* 	File 	    *          
+********************/
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 50//lunghezza 
+
+int main()
+{
+	char punta_file[MAX+1];
+	char punta_file2[MAX+1];	
+	char c;
+	
+	FILE *FileIN,*FileOUT;
+	
+	printf("Nome del file da leggere:");
+	scanf("%s",punta_file);
+	printf("Nome del file destinazione:");
+	scanf("%s",punta_file2);
+	
+	FileIN=fopen(punta_file,"r");
+	FileOUT=fopen(punta_file2,"a");
+	
+	if (FileIN != NULL && FileOUT != NULL)
+	{
+		while(!feof(FileIN))
+		{
+			c=fgetc(FileIN);
+
+			
+			fputc(c,FileOUT);
+		}
+		fclose(FileIN);
+		fclose(FileOUT);
+		
+	}
+	
+	else
+	printf("\nerrore in apertura file");
+	printf("\n");
+	system("pause");
+
+}
