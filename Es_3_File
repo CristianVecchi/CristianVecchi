@@ -1,0 +1,39 @@
+/********************
+*  Cristian Vecchi  *
+*       4°H         *      
+*     26/9/2022     *
+* 	File 	    *          
+********************/
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 50
+
+int main()
+{
+	int contaCaratteri=0,r=0,p=0;
+	char file[]="nomi.txt";
+	char c;
+	
+	FILE *punta_file;
+	
+	punta_file=fopen(file, "r");
+	
+	while(!feof(punta_file)) //controllare la fine del file
+	{	
+		//leggo il carattere dal file
+		c=fgetc(punta_file);
+		if(c>='a' && c<='z' || c>='A' && c<='Z') {
+			contaCaratteri++;
+		}
+		if(c==' ') 
+		{
+		p++;
+		}
+
+	}
+	fclose(punta_file);
+	
+	printf("Caratteri letti %d\n", contaCaratteri);
+	printf("\n");
+	system("pause");
+}
